@@ -14,6 +14,16 @@ Close
 from tkinter import *
 import backend
 
+def view_command():
+    books.delete(0, END)
+    for row in backend.view():
+        books.insert(END, row)
+        
+def search_command():
+    books.delete(0, END)
+    for row in backend.search(title_strVar.get(), author_strVar.get(), year_strVar.get(), ISBN_strVar.get()):
+        books.insert(END, row)
+
 root = Tk()
 
 title_label = Label(root, text="Title")
@@ -44,7 +54,7 @@ ISBN_strVar = StringVar()
 ISBN_entry = Entry(root, textvariable=ISBN_strVar)
 ISBN_entry.grid(row=1, column=3)
 
-books = Listbox(root, height=8, width=35)
+books = Listbox(root, height=8, width=50)
 books.grid(row=2, column=0, columnspan=2, rowspan=6)
 
 sb1 = Scrollbar(root)
@@ -53,10 +63,10 @@ sb1.grid(row=2, column=2, rowspan=6)
 books.configure(yscrollcommand=sb1.set)
 sb1.configure(command=books.yview)
 
-viewAll = Button(root, text="View all", width=12)
+viewAll = Button(root, text="View all", width=12, command=view_command)
 viewAll.grid(row=2, column=3)
 
-searchEntry = Button(root, text="Search entry", width=12)
+searchEntry = Button(root, text="Search entry", width=12, command=search_command)
 searchEntry.grid(row=3, column=3)
 
 addEntry = Button(root, text="Add entry", width=12)

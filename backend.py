@@ -3,14 +3,15 @@ import sqlite3
 def create_table():
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    cursor.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER AUTO_INCREMENT PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
     connection.commit()
     connection.close()
 
 def insert(title, author, year, isbn):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    cursor.execute("INSERT INTO book VALUES (NULL,?,?,?,?)", (title, year, author, isbn))
+    #cursor.execute("INSERT INTO book VALUES (NULL,?,?,?,?)", (title, year, author, isbn))
+    cursor.execute("INSERT INTO book(title, author, year, isbn) VALUES (?,?,?,?)", (title, author, year, isbn))
     connection.commit()
     connection.close()
     
@@ -47,3 +48,8 @@ def update(id, title, author, year, isbn):
 #connect()
 
 create_table()
+insert("Store", "Rajesh", 2006, 98581)
+print(search(author="Rajesh"))
+print(view())
+#insert("asdasd", "asda", 2559820, 628)
+#print(view())
