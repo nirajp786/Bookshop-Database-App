@@ -23,6 +23,12 @@ def search_command():
     books.delete(0, END)
     for row in backend.search(title_strVar.get(), author_strVar.get(), year_strVar.get(), ISBN_strVar.get()):
         books.insert(END, row)
+        
+def insert_command():
+    backend.insert(title_strVar.get(), author_strVar.get(), year_strVar.get(), ISBN_strVar.get())
+    books.delete(0, END)
+    books.insert(END, (title_strVar.get(), author_strVar.get(), year_strVar.get(), ISBN_strVar.get()))
+    
 
 root = Tk()
 
@@ -69,7 +75,7 @@ viewAll.grid(row=2, column=3)
 searchEntry = Button(root, text="Search entry", width=12, command=search_command)
 searchEntry.grid(row=3, column=3)
 
-addEntry = Button(root, text="Add entry", width=12)
+addEntry = Button(root, text="Add entry", width=12, command=insert_command)
 addEntry.grid(row=4, column=3)
 
 update = Button(root, text="Update", width=12)

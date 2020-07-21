@@ -48,8 +48,8 @@ def update(id, title, author, year, isbn):
 #connect()
 
 create_table()
-insert("Store", "Rajesh", 2006, 98581)
-print(search(author="Rajesh"))
-print(view())
+#insert("Store", "Rajesh", 2006, 98581)
+#print(search(author="Rajesh"))
+#print(view())
 #insert("asdasd", "asda", 2559820, 628)
 #print(view())
