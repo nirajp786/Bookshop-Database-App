@@ -16,16 +16,17 @@ import backend
 
 def get_selected_row(event):
     global selected_tuple
-    index=books.curselection()[0]
-    selected_tuple = books.get(index)
-    title_entry.delete(0, END)
-    title_entry.insert(END, selected_tuple[1])
-    author_entry.delete(0, END)
-    author_entry.insert(END, selected_tuple[2])
-    year_entry.delete(0, END)
-    year_entry.insert(END, selected_tuple[3])
-    ISBN_entry.delete(0, END)
-    ISBN_entry.insert(END, selected_tuple[4])
+    if books.size() > 0:
+        index=books.curselection()[0]
+        selected_tuple = books.get(index)
+        title_entry.delete(0, END)
+        title_entry.insert(END, selected_tuple[1])
+        author_entry.delete(0, END)
+        author_entry.insert(END, selected_tuple[2])
+        year_entry.delete(0, END)
+        year_entry.insert(END, selected_tuple[3])
+        ISBN_entry.delete(0, END)
+        ISBN_entry.insert(END, selected_tuple[4])
     
 
 def view_command():
@@ -88,7 +89,7 @@ books = Listbox(root, height=8, width=50)
 books.grid(row=2, column=0, columnspan=2, rowspan=6)
 
 sb1 = Scrollbar(root)
-sb1.grid(row=2, column=2, rowspan=6)
+sb1.grid(row=2, column=2, rowspan=6, sticky=N+S)
 
 books.configure(yscrollcommand=sb1.set)
 sb1.configure(command=books.yview)
