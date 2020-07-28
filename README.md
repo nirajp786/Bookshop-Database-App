@@ -12,3 +12,7 @@ Add an entry
 Update entry
 Delete
 Close
+
+## Running the program:
+When running the program you can either use the python files or in dist
+folder there is a .exe file
